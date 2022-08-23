@@ -1,16 +1,23 @@
 const resolvers = {
     Query: {
-        tracksForHome:  async (_, __, {dataSources}) => {
-          const data = await dataSources.trackAPI.getTracksForHome();
-          return data;
+        tracksForHome: (_, __, {dataSources}) => {
+           return dataSources.trackAPI.getTracksForHome();
+          
+        },
+        track: (_,{id},{dataSources}) =>{
+          return dataSources.trackAPI.getTrack(id);
         }
       },
-Track:{
-    author: async ({authorId}, _, {dataSources}) => {
-      const author =await  dataSources.trackAPI.getAuthor(authorId);
-      return author;
-}
-}
+    Track:{
+    author: ({authorId}, _, {dataSources}) => {
+      return dataSources.trackAPI.getAuthor(authorId);
+      
+    },
+    modules:({id},_,{dataSources})=>{
+          return dataSources.trackAPI.getTrackModules(id);
+    }
+    }
+
 };
 
 module.exports = resolvers;
