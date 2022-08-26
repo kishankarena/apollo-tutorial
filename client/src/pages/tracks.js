@@ -32,7 +32,7 @@ const Tracks = () => {
     <Layout grid>
       <QueryResult loading={loading} error={error} data={data}>
         {data?.tracksForHome?.map((track) => {
-          return <TrackCard key={track.id} track={track} />;
+          return <TrackCard key={track.id}  id={track.id} track={track} />;
         })}
       </QueryResult>
     </Layout>
